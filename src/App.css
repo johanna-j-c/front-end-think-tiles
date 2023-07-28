@@ -1,3 +1,22 @@
 .App {
   text-align: center;
 }
+
+.Fractions {
+  margin: 10px;
+}
+
+img {
+  margin: 5px;
+}
+
+.Board img {
+  margin: 0px;
+}
+
+.Board {
+  text-align: center;
+  width: 800px;
+  height: 500px;
+  border: 2px solid black;
+}
