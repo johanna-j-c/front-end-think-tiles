@@ -30,7 +30,7 @@ const FractionPictures = [
     }
 ]
 
-function DragDropWorkspace() {
+function FractionTile() {
 
     const [board, setBoard] = useState([]);
 
@@ -62,4 +62,4 @@ function DragDropWorkspace() {
     )
 };
 
-export default DragDropWorkspace
+export default FractionTile;

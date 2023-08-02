@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.App-header {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
 .Fractions {
   margin: 10px;
 }

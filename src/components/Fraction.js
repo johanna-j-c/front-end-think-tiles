@@ -20,4 +20,4 @@ function Fraction({ id, title, altText }){
     );
 };
 
-export default Fraction
+export default Fraction;
