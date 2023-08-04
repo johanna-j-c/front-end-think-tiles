@@ -5,8 +5,10 @@ import FractionTile from './components/FractionTile';
 import NewPromptForm from './components/NewPromptForm';
 import TileList from './components/TileList'; 
 import Question from './components/Question';
+import Login from './components/Login';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useForm } from "react-hook-form";
 import QuestionList from './components/QuestionList';
 import SelectedQuestion from './components/SelectedQuestion';
 
@@ -27,8 +29,21 @@ const getAllQuestions = () => {
     });
 };
 
+const getAllTeachers = () => {
+  return axios
+    .get(`${kBaseUrl}/teachers`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 function App() {
 
+  const [teacherState, setTeacherState] = useState(null)
   const [questionState, setQuestionState] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
@@ -50,19 +65,31 @@ function App() {
     })
   }
 
+  const fetchTeachers = (email) =>{
+    getAllTeachers().then((teachers)=>{
+      console.log(teachers);
+      setTeacherState(teachers.find((teacher) => {return teacher.email === email}));
+    })
+  }
+
   useEffect(()=>{
     fetchQuestions();
   },[]);
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="App">
       <header className="App-header">Think Tiles</header>
-      {/* <TileList tileData={tileState} /> */}
-      <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
-      <SelectedQuestion questionState={selectedQuestion} />
-      <FractionTile />
-      {/* <NewPromptForm /> */}
+      <div>
+      {!teacherState ? <Login fetchTeachers={fetchTeachers} /> : 
+        <div className="App">
+          <header className="App-header">Think Tiles</header>
+          {/* <TileList tileData={tileState} /> */}
+          <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
+          <SelectedQuestion questionState={selectedQuestion} />
+          <FractionTile />
+          {/* <NewPromptForm /> */}
+        </div>
+      }
       </div>
     </DndProvider>
   );
