@@ -31,7 +31,8 @@ function Login(props) {
 				<input type="email" {...register("email", { required: true })} />
 				{errors.email && <span style={{ color: "red" }}>
 					*Email* is mandatory </span>}
-				{/* <input type="password" {...register("password")} /> */}
+                <label>Password:</label>
+				<input type="password" {...register("password")} />
 				<input type={"submit"} style={{ backgroundColor: "#a1eafb" }} />
 			</form>
 		</>

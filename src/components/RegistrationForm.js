@@ -8,7 +8,7 @@ const RegistrationForm = (props) => {
         <>
             <p className="title">Registration Form</p>
  
-            <form className="App">
+            <form className="Registration">
                 <input type="text" />
                 <input type="email" />
                 <input type="password" />
@@ -19,6 +19,7 @@ const RegistrationForm = (props) => {
     );
 };
 
+// Need to update these propTypes
 // BoardList.propTypes = {
 //     boardData: PropTypes.arrayOf(
 //         PropTypes.shape({
