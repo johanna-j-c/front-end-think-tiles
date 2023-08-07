@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import QuestionList from './components/QuestionList';
 import SelectedQuestion from './components/SelectedQuestion';
+import RegistrationForm from './components/RegistrationForm';
 
 const kBaseUrl = "http://127.0.0.1:8080";
 
@@ -80,15 +81,19 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <header className="App-header">Think Tiles</header>
       <div>
-      {!teacherState ? <Login fetchTeachers={fetchTeachers} /> : 
-        <div className="App">
-          <header className="App-header">Think Tiles</header>
-          {/* <TileList tileData={tileState} /> */}
-          <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
-          <SelectedQuestion questionState={selectedQuestion} />
-          <FractionTile />
-          {/* <NewPromptForm /> */}
-        </div>
+      {!teacherState ? 
+      <div>
+        <RegistrationForm />
+        <Login fetchTeachers={fetchTeachers} />
+      </div> : 
+      <div className="App">
+        <header className="App-header">Think Tiles</header>
+        {/* <TileList tileData={tileState} /> */}
+        <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
+        <SelectedQuestion questionState={selectedQuestion} />
+        <FractionTile />
+        {/* <NewPromptForm /> */}
+      </div>
       }
       </div>
     </DndProvider>
