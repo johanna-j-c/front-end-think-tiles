@@ -42,10 +42,15 @@ const getAllTeachers = () => {
     });
 };
 
-function App() {
 
-  const [teacherState, setTeacherState] = useState([])
-  const [userState, setUserState] = useState(null)
+function App() {
+  let localStorageEmail = localStorage.getItem("email");
+  const checkUserState = () => {
+    return localStorageEmail ? localStorageEmail : null
+  };
+
+  const [teacherState, setTeacherState] = useState([]);
+  const [userState, setUserState] = useState(checkUserState());
   const [questionState, setQuestionState] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
@@ -69,7 +74,7 @@ function App() {
 
   const fetchTeachers = (email) =>{
     getAllTeachers().then((teachers)=>{
-      console.log(teachers);
+      // console.log(teachers);
       setUserState(teachers.find((teacher) => {return teacher.email === email}));
     })
   }
