@@ -16,6 +16,7 @@ import RegistrationForm from './components/RegistrationForm';
 const kBaseUrl = "http://127.0.0.1:8080";
 
 // Need to change hard coding this to logged in teacher state
+// let teacherId = localStorage.getItem("email")[0]
 let teacherId = 1;
 
 const getAllQuestions = () => {
@@ -46,11 +47,12 @@ const getAllTeachers = () => {
 function App() {
   let localStorageEmail = localStorage.getItem("email");
   const checkUserState = () => {
-    return localStorageEmail ? localStorageEmail : null
+    return localStorageEmail ? true : false
   };
 
   const [teacherState, setTeacherState] = useState([]);
-  const [userState, setUserState] = useState(checkUserState());
+  const [loginState, setLoginState] = useState(checkUserState());
+  const [userState, setUserState] = useState(null)
   const [questionState, setQuestionState] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
@@ -66,21 +68,33 @@ function App() {
   };
   
   const fetchQuestions = () =>{
-    getAllQuestions().then((questions)=>{
+    return getAllQuestions().then((questions)=>{
       console.log(questions);
       setQuestionState(questions);
     })
   }
 
-  const fetchTeachers = (email) =>{
-    getAllTeachers().then((teachers)=>{
+  const fetchTeachers = () =>{
+    return getAllTeachers().then((teachers)=>{
+      console.log(teachers);
+      setTeacherState(teachers);
+    })
+  }
+
+
+  const fetchLoginTeachers = (email) =>{
+    return getAllTeachers().then((teachers)=>{
       // console.log(teachers);
-      setUserState(teachers.find((teacher) => {return teacher.email === email}));
+      let currentTeacher = teachers.find((teacher) => {return teacher.email === email});
+      console.log(currentTeacher);
+      return currentTeacher;
     })
   }
 
   useEffect(()=>{
-    fetchQuestions();
+    // fetchQuestions();
+    // fetchLoginTeachers();
+    fetchTeachers();
   },[]);
 
   const onHandleTeacherSubmit = (data) => {
@@ -91,14 +105,26 @@ function App() {
       .catch((e) => console.log(e));
   };
 
+  const findTeacherById = (teacherId) => {
+    return teacherState.find((teacher) => {return teacher.id === teacherId})
+  };
+
+  const handleLoginUser = (teacherId) => {
+    console.log(teacherId);
+    let currentTeacher = findTeacherById(teacherId);
+    setUserState(currentTeacher);
+    fetchQuestions(teacherId);
+    console.log(userState);
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <header className="App-header">Think Tiles</header>
       <div>
-      {!userState ? 
+      {!loginState && !userState ? 
       <div>
         <RegistrationForm onHandleTeacherSubmit={onHandleTeacherSubmit} />
-        <Login fetchTeachers={fetchTeachers} />
+        <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
       </div> : 
       <div className="App">
         <header className="App-header">Think Tiles</header>

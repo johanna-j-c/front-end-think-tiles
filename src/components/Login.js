@@ -9,12 +9,15 @@ function Login(props) {
 		formState: { errors },
 	} = useForm();
 
-	const onSubmit = (data) => {
-		const userData = JSON.parse(localStorage.getItem(data.email));
-        const teacherData = props.fetchTeachers(data.email)
+	const onSubmit = async (data) => {
+		console.log(data);
+		// const userData = JSON.parse(localStorage.getItem(data.email));
+		// console.log(userData);
+		const teacherData = await props.fetchLoginTeachers(data.email)
+		console.log(teacherData);
 		if (teacherData) { // getItem can return actual value or null
 			if (teacherData.email === data.email) {
-				console.log(userData.name + " You Are Successfully Logged In");
+				console.log(data.name + " You Are Successfully Logged In");
 			} else {
 				console.log("Email or Password is not matching with our record");
 			}
@@ -24,8 +27,10 @@ function Login(props) {
 		localStorage.setItem("email", JSON.stringify({ 
 			name: data.name, email: data.email 
 		}));
-		let loginEmail = JSON.parse(localStorage.getItem(data.email))
-		console.log(loginEmail);
+		// let loginEmail = JSON.parse(localStorage.getItem(data.email))
+		// console.log(loginEmail);
+		console.log(teacherData);
+		props.handleLoginUser(teacherData.id)
 	};
 
 	return (
