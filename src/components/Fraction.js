@@ -15,7 +15,7 @@ function Fraction({ id, title, altText }){
         ref={drag}
         src={title} 
         alt={altText} 
-        style={{ border: isDragging ? "5px solid pink" : "0px"}} 
+        style={{ border: isDragging ? "5px solid pink" : "0px"}}
     />
     );
 };

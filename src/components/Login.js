@@ -10,16 +10,23 @@ function Login(props) {
 	} = useForm();
 
 	const onSubmit = (data) => {
+		console.log(`data: ${data}`)
 		const userData = JSON.parse(localStorage.getItem(data.email));
         const teacherData = props.fetchTeachers(data.email)
 		if (teacherData) { // getItem can return actual value or null
 			if (teacherData.email === data.email) {
+				console.log(`teacherData:${teacherData}`);
+				console.log(`userData:${userData}`);
 				console.log(userData.name + " You Are Successfully Logged In");
 			} else {
 				console.log("Email or Password is not matching with our record");
+				console.log(`teacherData:${teacherData}`);
+				console.log(`userData:${userData}`);
 			}
 		} else {
 			console.log("Email or Password is not matching with our record");
+			console.log(`teacherData:${teacherData}`);
+			console.log(`userData:${userData}`);
 		}
 	};
 	return (

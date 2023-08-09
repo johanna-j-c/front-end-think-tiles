@@ -1,30 +1,145 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
 import './RegistrationForm.css';
 
-
 const RegistrationForm = (props) => {
+    const teacherDefaultState = {
+        name: "",
+        email: "",
+		password: ""
+    };
+    
+    const [teacherFormData, setTeacherFormData] = useState(teacherDefaultState);
+    const [isHidden, setIsHidden] = useState(false);
+    
+    const handleChange = (event) => {
+    const fieldName = event.target.name;
+	const fieldValue = event.target.value;
+    
+    const newFormData = {...teacherFormData, [fieldName]: fieldValue};
+    setTeacherFormData(newFormData);
+    };
 
-	const { register, handleSubmit, formState: { errors } } = useForm();
+    const handleSubmit = (event) => {
+    event.preventDefault();
+    const newTeacher = {
+        name: teacherFormData.name, 
+        email: teacherFormData.email,
+		password: teacherFormData.password
+    }
+    props.onHandleTeacherSubmit(newTeacher);
+    setTeacherFormData(teacherDefaultState);
+    };
 
-	const onSubmit = (data) => console.log(data);
+    const toggleHiddenForm = () => {
+        setIsHidden(!isHidden);
+    };
 
-	return (
-		<>
-			<p className="title">Registration Form</p>
+    const hiddenClass = isHidden ? 'hidden-component' : null;
+    const hiddenFormText = isHidden ? 'Show Teacher Registration Form' : 'Hide Teacher Registration Form';
 
-			<form className="Registration" onSubmit={handleSubmit(onSubmit)}>
-				<input type="name" {...register("name")} />
-				<input type="email" {...register("email", { required: true })} />
-				{errors.email && <span style={{ color: "red" }}>
-					*Email* is mandatory </span>}
-				<input type="password" {...register("password")} />
-				<input type={"submit"} style={{ backgroundColor: "#a1eafb" }} />
-			</form>
-		</>
-	);
-}
+    return (
+    <section className="newTeacherForm">
+        <form onSubmit={handleSubmit} className={hiddenClass}>
+            <h2>New Teacher Registration</h2>
+            <div>
+            <label htmlFor="name">Name: </label>
+            <input type="text" id="name" name="name" onChange={handleChange} value={teacherFormData.name}></input>
+            </div>
+            <div>
+            <label htmlFor="email"> Email: </label>
+            <input type="text" id="email" name="email" onChange={handleChange} value={teacherFormData.email}></input>
+            </div>
+			<div>
+            <label htmlFor="password"> Password: </label>
+            <input type="text" id="password" name="password" onChange={handleChange} value={teacherFormData.password}></input>
+            </div>
+            <div>
+            <input type="submit" value="Sign up"></input>
+            </div>
+        </form>
+        <button onClick={toggleHiddenForm}>{hiddenFormText}</button>
+    </section>
+    );
+};
+
+
+// const RegistrationForm = (props) => {
+
+	// const { register, handleSubmit, formState: { errors } } = useForm();
+
+	// const onSubmit = (data) => console.log(data);
+	// const [formFields, setFormFields] = useState({
+    //     name: '',
+    //     email: '',
+	// 	password: ''
+    // });
+
+    // const onNameChange = (event) => {
+    //     setFormFields({
+    //         ...formFields,
+    //         name: event.target.value
+    //     })
+    // };
+
+    // const onEmailChange = (event) => {
+    //     setFormFields({
+    //         ...formFields,
+    //         email: event.target.value
+    //     })
+    // };
+
+	// const onPasswordChange = (event) => {
+    //     setFormFields({
+    //         ...formFields,
+    //         password: event.target.value
+    //     })
+    // };
+
+	// return (
+	// 	<form>
+    //         <div>
+    //             <label htmlFor="fullName">Name:</label>
+    //             <input
+    //                 name="fullName"
+    //                 value={formFields.name}
+    //                 onChange={onNameChange} />
+    //         </div>
+    //         <div>
+    //             <label htmlFor="email">Email:</label>
+    //             <input name="email"
+    //                 value={formFields.email}
+    //                 onChange={onEmailChange} />
+    //         </div>
+	// 		<div>
+	// 			<label>Password:</label>
+	// 			<input 
+	// 				password="password"
+    //                 value={formFields.password}
+    //                 onChange={onPasswordChange} />
+	// 		</div>
+    //         <input
+    //             type="submit"
+    //             value="Register Teacher" />
+    //     </form>
+		// <>
+		// 	<p className="title">Registration Form</p>
+
+		// 	<form className="Registration" onSubmit={handleSubmit(onSubmit)}>
+		// 		<label>Name:</label>
+		// 		<input type="name" {...register("name")} />
+		// 		<label>Email:</label>
+		// 		<input type="email" {...register("email", { required: true })} />
+		// 		{errors.email && <span style={{ color: "red" }}>
+		// 			*Email* is mandatory </span>}
+		// 		<label>Password:</label>
+		// 		<input type="password" {...register("password")} />
+		// 		<input type={"submit"} style={{ backgroundColor: "#a1eafb" }} />
+		// 	</form>
+		// </>
+	// );
+// }
 
 // Need to update these propTypes
 // BoardList.propTypes = {

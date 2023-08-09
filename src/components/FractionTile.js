@@ -60,6 +60,6 @@ function FractionTile() {
         </div>
         </>
     )
-};
+}; 
 
 export default FractionTile;

@@ -44,7 +44,8 @@ const getAllTeachers = () => {
 
 function App() {
 
-  const [teacherState, setTeacherState] = useState(null)
+  const [teacherState, setTeacherState] = useState([])
+  const [userState, setUserState] = useState(null)
   const [questionState, setQuestionState] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
@@ -69,7 +70,7 @@ function App() {
   const fetchTeachers = (email) =>{
     getAllTeachers().then((teachers)=>{
       console.log(teachers);
-      setTeacherState(teachers.find((teacher) => {return teacher.email === email}));
+      setUserState(teachers.find((teacher) => {return teacher.email === email}));
     })
   }
 
@@ -77,13 +78,21 @@ function App() {
     fetchQuestions();
   },[]);
 
+  const onHandleTeacherSubmit = (data) => {
+    axios.post(`${kBaseUrl}/teachers`, data)
+      .then((response) => {
+        setTeacherState((prevTeachers) => [response.data, ...prevTeachers]);
+      })
+      .catch((e) => console.log(e));
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <header className="App-header">Think Tiles</header>
       <div>
-      {!teacherState ? 
+      {!userState ? 
       <div>
-        <RegistrationForm />
+        <RegistrationForm onHandleTeacherSubmit={onHandleTeacherSubmit} />
         <Login fetchTeachers={fetchTeachers} />
       </div> : 
       <div className="App">
