@@ -24,13 +24,13 @@ function Login(props) {
 		} else {
 			console.log("Email or Password is not matching with our record");
 		}
-		localStorage.setItem("email", JSON.stringify({ 
-			name: data.name, email: data.email 
+		localStorage.setItem("teacher", JSON.stringify({ 
+			id: teacherData.id, name: teacherData.name, email: teacherData.email 
 		}));
 		// let loginEmail = JSON.parse(localStorage.getItem(data.email))
 		// console.log(loginEmail);
 		console.log(teacherData);
-		props.handleLoginUser(teacherData.id)
+		props.handleLoginUser(teacherData)
 	};
 
 	return (

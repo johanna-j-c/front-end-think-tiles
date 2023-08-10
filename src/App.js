@@ -15,20 +15,23 @@ import RegistrationForm from './components/RegistrationForm';
 
 const kBaseUrl = "http://127.0.0.1:8080";
 
-// Need to change hard coding this to logged in teacher state
-// let teacherId = localStorage.getItem("email")[0]
-let teacherId = 1;
+let localStorageTeacher = localStorage.getItem("teacher");
 
-const getAllQuestions = () => {
-  return axios
-    .get(`${kBaseUrl}/teachers/${teacherId}/questions`)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+const getUserId = () => {
+  if (localStorageTeacher) {
+    const storedTeacher = JSON.parse(localStorageTeacher);
+    const teacherId = storedTeacher.id;
+    return teacherId
+  } else{
+    return ""
+  }
+};
+
+let userId = getUserId();
+
+const checkUserState = () => {
+  // userId = localStorageTeacher.id
+  return localStorageTeacher ? true : false
 };
 
 const getAllTeachers = () => {
@@ -43,13 +46,20 @@ const getAllTeachers = () => {
     });
 };
 
+const getAllQuestions = (userId) => {
+  return axios
+    .get(`${kBaseUrl}/teachers/${userId}/questions`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 
 function App() {
-  let localStorageEmail = localStorage.getItem("email");
-  const checkUserState = () => {
-    return localStorageEmail ? true : false
-  };
-
   const [teacherState, setTeacherState] = useState([]);
   const [loginState, setLoginState] = useState(checkUserState());
   const [userState, setUserState] = useState(null)
@@ -63,12 +73,12 @@ function App() {
   const handleQuestionSelection = (questionId) => {
     let question = findQuestionById(questionId);
     setSelectedQuestion(question);
-    fetchQuestions(questionId);
+    // fetchQuestions(questionId);
     console.log(selectedQuestion)
   };
   
-  const fetchQuestions = () =>{
-    return getAllQuestions().then((questions)=>{
+  const fetchQuestions = (userId) =>{
+    return getAllQuestions(userId).then((questions)=>{
       console.log(questions);
       setQuestionState(questions);
     })
@@ -92,10 +102,17 @@ function App() {
   }
 
   useEffect(()=>{
-    // fetchQuestions();
-    // fetchLoginTeachers();
     fetchTeachers();
+    fetchQuestions(userId);
+    setLoginState(checkUserState);
+    // fetchLoginTeachers();
   },[]);
+
+  useEffect(() => {
+    console.log(userState);
+    console.log(loginState)
+  }, [userState, loginState]);
+  
 
   const onHandleTeacherSubmit = (data) => {
     axios.post(`${kBaseUrl}/teachers`, data)
@@ -105,23 +122,23 @@ function App() {
       .catch((e) => console.log(e));
   };
 
-  const findTeacherById = (teacherId) => {
-    return teacherState.find((teacher) => {return teacher.id === teacherId})
-  };
+  // const findTeacherById = (teacherId) => {
+  //   return teacherState.find((teacher) => {return teacher.id === teacherId})
+  // };
 
-  const handleLoginUser = (teacherId) => {
-    console.log(teacherId);
-    let currentTeacher = findTeacherById(teacherId);
-    setUserState(currentTeacher);
-    fetchQuestions(teacherId);
-    console.log(userState);
+  const handleLoginUser = (teacher) => {
+    console.log(teacher);
+    // let currentTeacher = findTeacherById(teacherId);
+    console.log(teacher);
+    checkUserState();
+    // console.log(`userId:${userId}`)
   };
 
   return (
     <DndProvider backend={HTML5Backend}>
       <header className="App-header">Think Tiles</header>
       <div>
-      {!loginState && !userState ? 
+      {!loginState ? 
       <div>
         <RegistrationForm onHandleTeacherSubmit={onHandleTeacherSubmit} />
         <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
