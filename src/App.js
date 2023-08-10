@@ -27,6 +27,14 @@ const getAllQuestions = () => {
     });
 };
 
+const deleteQuestion = (questionId) => {
+  return axios 
+  .delete(`${kBaseUrl}/questions/${questionId}`)
+  .catch((error) => {
+    console.log(error)
+  });
+};
+
 function App() {
 
   const [questionState, setQuestionState] = useState([]);
@@ -58,6 +66,14 @@ function App() {
     })
   }
 
+  const onUnregister = (questionId) => {
+    deleteQuestion(questionId).then(() => {
+      setQuestionState((oldData) => {
+        return oldData.filter((question) => question.id !== questionId);
+      });
+    });
+  };
+
   useEffect(()=>{
     fetchQuestions();
   },[]);
@@ -67,7 +83,8 @@ function App() {
       <div className="App">
       <header className="App-header">Think Tiles</header>
       {/* <TileList tileData={tileState} /> */}
-      <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
+      <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
+        onUnregister={onUnregister} />
       <SelectedQuestion questionState={selectedQuestion} />
       <FractionTile />
       <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />

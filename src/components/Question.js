@@ -10,7 +10,10 @@ const Question = (props) => {
 
     return (
         <li>
-            <button id="button" onClick={handleQuestionClick}>{props.title}</button>
+            <h3>{props.title}</h3>
+            <p>{props.prompt}</p>
+            <button id="button" onClick={handleQuestionClick}>Present</button>
+            <button onClick={(e) => props.onUnregister(props.questionId)}>Delete ❌ </button>
         </li>
     );
 };

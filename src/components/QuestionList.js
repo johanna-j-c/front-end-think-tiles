@@ -13,6 +13,7 @@ const QuestionList = (props) => {
                         prompt = {question.prompt}
                         key={question.question}
                         onSelectQuestion={props.onSelectQuestion}
+                        onUnregister={props.onUnregister}
                     />
                 );
             });
