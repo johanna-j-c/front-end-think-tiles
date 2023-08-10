@@ -2,7 +2,7 @@ import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import FractionTile from './components/FractionTile';
-import NewPromptForm from './components/NewPromptForm';
+import NewQuestionForm from './components/NewQuestionForm';
 import TileList from './components/TileList'; 
 import Question from './components/Question';
 import axios from 'axios';
@@ -39,8 +39,16 @@ function App() {
   const handleQuestionSelection = (questionId) => {
     let question = findQuestionById(questionId);
     setSelectedQuestion(question);
-    fetchQuestions(questionId);
+    // fetchTiles(questionId); Need to update
     console.log(selectedQuestion)
+  };
+
+  const onHandleQuestionSubmit = (data) => {
+    axios.post(`${kBaseUrl}/teachers/${teacherId}/questions`, data)
+      .then((response) => {
+        setQuestionState((prevQuestions) => [response.data.question, ...prevQuestions]);
+      })
+      .catch((e) => console.log(e));
   };
   
   const fetchQuestions = () =>{
@@ -62,7 +70,7 @@ function App() {
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
       <SelectedQuestion questionState={selectedQuestion} />
       <FractionTile />
-      {/* <NewPromptForm /> */}
+      <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
       </div>
     </DndProvider>
   );

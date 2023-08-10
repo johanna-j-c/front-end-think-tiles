@@ -8,7 +8,7 @@ const QuestionList = (props) => {
             return questions.map((question)=>{
                 return (
                     <Question
-                        questionId = {question.questionId}
+                        questionId = {question.id}
                         title = {question.title}
                         prompt = {question.prompt}
                         key={question.question}
