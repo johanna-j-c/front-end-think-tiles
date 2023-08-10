@@ -58,12 +58,6 @@ function App() {
 
   const getUserId = () => {
     return userState ? userState.id : ""
-    // if (userState) {
-    //   const teacherId = userState.id;
-    //   return teacherId
-    // } else{
-    //   return ""
-    // }
   };
 
   const userId = getUserId();
@@ -97,7 +91,6 @@ function App() {
 
   const fetchLoginTeachers = (email) =>{
     return getAllTeachers().then((teachers)=>{
-      // console.log(teachers);
       let currentTeacher = teachers.find((teacher) => {return teacher.email === email});
       console.log(currentTeacher);
       return currentTeacher;
@@ -109,7 +102,6 @@ function App() {
     if (userId){
       fetchQuestions(userId);
     }
-    // fetchLoginTeachers();
   },[]);
   
   const onHandleTeacherSubmit = (data) => {
@@ -120,17 +112,10 @@ function App() {
       .catch((e) => console.log(e));
   };
 
-  // const findTeacherById = (teacherId) => {
-  //   return teacherState.find((teacher) => {return teacher.id === teacherId})
-  // };
-
   const handleLoginUser = (teacher) => {
-    console.log(teacher);
-    // let currentTeacher = findTeacherById(teacherId);
     console.log(teacher);
     setUserState(teacher);
     fetchQuestions(teacher.id);
-    // console.log(`userId:${userId}`)
   };
 
   return (
@@ -144,11 +129,9 @@ function App() {
       </div> : 
       <div className="App">
         <header className="App-header">Think Tiles</header>
-        {/* <TileList tileData={tileState} /> */}
         <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
         <SelectedQuestion questionState={selectedQuestion} />
         <FractionTile />
-        {/* <NewPromptForm /> */}
       </div>
       }
       </div>

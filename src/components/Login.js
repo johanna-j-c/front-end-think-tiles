@@ -11,11 +11,9 @@ function Login(props) {
 
 	const onSubmit = async (data) => {
 		console.log(data);
-		// const userData = JSON.parse(localStorage.getItem(data.email));
-		// console.log(userData);
 		const teacherData = await props.fetchLoginTeachers(data.email)
 		console.log(teacherData);
-		if (teacherData) { // getItem can return actual value or null
+		if (teacherData) {
 			if (teacherData.email === data.email) {
 				console.log(data.name + " You Are Successfully Logged In");
 			} else {
@@ -27,8 +25,6 @@ function Login(props) {
 		localStorage.setItem("teacher", JSON.stringify({ 
 			id: teacherData.id, name: teacherData.name, email: teacherData.email 
 		}));
-		// let loginEmail = JSON.parse(localStorage.getItem(data.email))
-		// console.log(loginEmail);
 		console.log(teacherData);
 		props.handleLoginUser(teacherData)
 	};
