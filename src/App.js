@@ -41,11 +41,15 @@ function App() {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const findQuestionById = (questionId) => {
-    return questionState.find((question) => {return question.questionId === questionId})
+    console.log(questionId)
+    return questionState.find((question) => {return question.id === questionId})
   };
   
   const handleQuestionSelection = (questionId) => {
+    console.log(questionState);
+    console.log(questionId)
     let question = findQuestionById(questionId);
+    console.log(question);
     setSelectedQuestion(question);
     // fetchTiles(questionId); Need to update
     console.log(selectedQuestion)
@@ -85,7 +89,7 @@ function App() {
       {/* <TileList tileData={tileState} /> */}
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
         onUnregister={onUnregister} />
-      <SelectedQuestion questionState={selectedQuestion} />
+      <SelectedQuestion selectedQuestion={selectedQuestion} />
       <FractionTile />
       <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
       </div>

@@ -7,7 +7,7 @@ const SelectedQuestion = (props) => {
     return (
         <main className="selectedQuestion">
             <h2>Current Selected Question</h2>
-            <h3>{props.questionState ? props.questionState.prompt : 'None Selected'}</h3>
+            <h3>{props.selectedQuestion ? props.selectedQuestion.prompt : 'None Selected'}</h3>
         </main>
     );
 };

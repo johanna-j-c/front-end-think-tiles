@@ -5,7 +5,8 @@ import './Question.css';
 const Question = (props) => {
     
     const handleQuestionClick = () => {
-        props.onSelectQuestion(props.id);
+        console.log(props.questionId)
+        props.onSelectQuestion(props.questionId);
     };
 
     return (
