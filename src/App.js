@@ -14,6 +14,7 @@ const kBaseUrl = "http://127.0.0.1:8080";
 
 // Need to change hard coding this to logged in teacher state
 let teacherId = 1;
+let questionId = 1;
 
 const getAllQuestions = () => {
   return axios
@@ -35,10 +36,23 @@ const deleteQuestion = (questionId) => {
   });
 };
 
+const getAllTiles = () => {
+  return axios
+    .get(`${kBaseUrl}/questions/${questionId}/tiles`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 function App() {
 
   const [questionState, setQuestionState] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [tileState, setTileState] = useState([]);
 
   const findQuestionById = (questionId) => {
     console.log(questionId)
@@ -51,6 +65,7 @@ function App() {
     let question = findQuestionById(questionId);
     console.log(question);
     setSelectedQuestion(question);
+    fetchTiles();
     // fetchTiles(questionId); Need to update
     console.log(selectedQuestion)
   };
@@ -67,6 +82,13 @@ function App() {
     getAllQuestions().then((questions)=>{
       console.log(questions);
       setQuestionState(questions);
+    })
+  }
+
+  const fetchTiles = () =>{
+    getAllTiles().then((tiles)=>{
+      console.log(tiles);
+      setTileState(tiles);
     })
   }
 
@@ -89,8 +111,8 @@ function App() {
       {/* <TileList tileData={tileState} /> */}
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
         onUnregister={onUnregister} />
-      <SelectedQuestion selectedQuestion={selectedQuestion} />
-      <FractionTile />
+      <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} />
+      {/* <FractionTile /> */}
       <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
       </div>
     </DndProvider>

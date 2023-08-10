@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FractionTile from './FractionTile';
 import './SelectedQuestion.css';
 
 const SelectedQuestion = (props) => {
@@ -8,6 +9,10 @@ const SelectedQuestion = (props) => {
         <main className="selectedQuestion">
             <h2>Current Selected Question</h2>
             <h3>{props.selectedQuestion ? props.selectedQuestion.prompt : 'None Selected'}</h3>
+            {props.selectedQuestion ?
+            <section>
+                <FractionTile tileData={props.tileData} />
+            </section> : null}
         </main>
     );
 };
