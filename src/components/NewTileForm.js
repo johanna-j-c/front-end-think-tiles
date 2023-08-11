@@ -43,9 +43,14 @@ const NewTileForm = (props) => {
     return (
     <section className="NewTileForm" >
         <section className={hiddenClass} >
-            <div className="FractionsOptions">{FractionPictures.map((picture)=>{
+            <div className="AddFractionsOptions">{FractionPictures.map((picture)=>{
                 return <button>
                             <img src={picture.title} alt={picture.altText} onClick={(e) => props.addTile(picture)} />
+                        </button> })};
+            </div>
+            <div className="DeleteFractionsOptions">{FractionPictures.map((picture)=>{
+                return <button>
+                            <img src={picture.title} alt={picture.altText} onClick={(e) => props.deleteTile(picture)} />
                         </button> })};
             </div>
         </section>

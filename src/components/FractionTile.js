@@ -8,6 +8,7 @@ import FractionPictures from "../ImageList"
 import "../App.css";
 import { useDrop } from "react-dnd";
 import NewTileForm from "./NewTileForm";
+import TileList from "./TileList";
 
 // const FractionPictures = [
 //     {
@@ -72,7 +73,8 @@ function FractionTile(props) {
                 return <Fraction title={picture.title} id={picture.id} />;
             })}
         </div>
-        <NewTileForm addTile={props.addTile} />
+        {/* <NewTileForm addTile={props.addTile} /> */}
+        <TileList addTile={props.addTile} />
         </>
     )
 };
