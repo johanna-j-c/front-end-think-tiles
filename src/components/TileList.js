@@ -9,11 +9,12 @@ const TileList = (props) => {
             return tiles.map((tile)=>{
                 return (
                     <Tile
-                        tileId = {tile.tileId}
+                        tileId = {tile.id}
                         title = {tile.title}
                         value = {tile.value}
                         key={tile.tileId}
                         addTile={props.addTile}
+                        onUnregisterTile={props.onUnregisterTile}
                     />
                 );
             });

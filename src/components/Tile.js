@@ -7,7 +7,8 @@ const Tile = (props) => {
     return (
         <li>
             <img src={props.title} alt={props.altText} />
-            <button onClick={(e) => props.addTile({id: props.id, value: props.value})}>Add Tile</button> 
+            <button onClick={(e) => props.addTile({id: props.id, value: props.value})}>Add Tile ✅</button>
+            <button onClick={(e) => props.onUnregisterTile({id: props.id, value: props.value})}>Remove Tile ❌</button>  
         </li>
     );
 };

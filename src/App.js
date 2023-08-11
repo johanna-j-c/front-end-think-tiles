@@ -48,6 +48,14 @@ const getAllTiles = () => {
     });
 };
 
+const deleteTile = (tileId) => {
+  return axios 
+  .delete(`${kBaseUrl}/tiles/${tileId}`)
+  .catch((error) => {
+    console.log(error)
+  });
+};
+
 function App() {
 
   const [questionState, setQuestionState] = useState([]);
@@ -104,13 +112,29 @@ function App() {
     console.log(data);
     axios.post(`${kBaseUrl}/questions/${questionId}/tiles`, data)
       .then((response) => {
-        setTileState((prevTiles) => [response.data.tile, ...prevTiles]);
+        setTileState((prevTiles) => [response.data, ...prevTiles]);
       })
       .catch((e) => console.log(e));
   };
 
+  const findTilebyValue = (tileValue) => {
+    return tileState.find((tile) => {return tile.value === tileValue})
+  };
+
+  const onUnregisterTile = (tileData) => {
+    console.log(tileData);
+    const currentTile = findTilebyValue(tileData.value);
+    deleteTile(currentTile.id).then(() => {
+      setTileState((oldData) => {
+        return oldData.filter((tile) => tileData.id !== tile.id);
+      });
+      fetchTiles();
+    });
+  };
+
   useEffect(()=>{
     fetchQuestions();
+    fetchTiles();
   },[]);
 
   return (
@@ -120,7 +144,8 @@ function App() {
       {/* <TileList tileData={tileState} /> */}
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
         onUnregister={onUnregister} />
-      <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} addTile={onHandleNewTile} />
+      <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} 
+      addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
       {/* <FractionTile /> */}
       <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
       </div>

@@ -74,7 +74,7 @@ function FractionTile(props) {
             })}
         </div>
         {/* <NewTileForm addTile={props.addTile} /> */}
-        <TileList addTile={props.addTile} />
+        <TileList addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
         </>
     )
 };
