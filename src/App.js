@@ -47,7 +47,7 @@ const deleteQuestion = (questionId) => {
   });
 };
 
-const getAllTiles = () => {
+const getAllTiles = (questionId) => {
   return axios
     .get(`${kBaseUrl}/questions/${questionId}/tiles`)
     .then((response) => {
@@ -89,8 +89,15 @@ function App() {
     return userState ? userState.id : ""
   };
 
+  const getSelectedQuestionId = () => {
+    return selectedQuestion ? selectedQuestion.id : null
+  };
+
   const userId = getUserId();
   console.log(userId)
+
+  const questionId = getSelectedQuestionId();
+  console.log(questionId)
 
   const findQuestionById = (questionId) => {
     console.log(questionId)
@@ -104,12 +111,11 @@ function App() {
     console.log(question);
     setSelectedQuestion(question);
     // fetchTiles();
-    // fetchTiles(questionId); Need to update
-    console.log(selectedQuestion)
+    fetchTiles(questionId);
   };
 
   const onHandleQuestionSubmit = (data) => {
-    axios.post(`${kBaseUrl}/teachers/${teacherId}/questions`, data)
+    axios.post(`${kBaseUrl}/teachers/${userId}/questions`, data)
       .then((response) => {
         setQuestionState((prevQuestions) => [response.data, ...prevQuestions]);
       })
@@ -139,8 +145,8 @@ function App() {
     })
   }
 
-  const fetchTiles = () =>{
-    getAllTiles().then((tiles)=>{
+  const fetchTiles = (questionId) =>{
+    getAllTiles(questionId).then((tiles)=>{
       console.log(tiles);
       setTileState(tiles);
     })
@@ -172,9 +178,9 @@ function App() {
     const currentTile = findTilebyValue(tileData.value);
     deleteTile(currentTile.id).then(() => {
       setTileState((oldData) => {
-        return oldData.filter((tile) => tileData.id !== tile.id);
+        return oldData.filter((tile) => currentTile.id !== tile.id);
       });
-      fetchTiles();
+      fetchTiles(questionId);
     });
   };
 
@@ -183,7 +189,9 @@ function App() {
     if (userId){
       fetchQuestions(userId);
     }
-    fetchTiles();
+    if (questionId){
+      fetchTiles(questionId);
+    }
   },[]);
   
   const onHandleTeacherSubmit = (data) => {
@@ -210,20 +218,12 @@ function App() {
         <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
       </div> : 
       <div className="App">
-      <header className="App-header">Think Tiles</header>
-      {/* <TileList tileData={tileState} /> */}
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
         onUnregister={onUnregister} />
       <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} 
       addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
-      {/* <FractionTile /> */}
       <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
-        <header className="App-header">Think Tiles</header>
-        <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection} />
-        <SelectedQuestion questionState={selectedQuestion} />
-        <FractionTile />
-      </div>
-      }
+      </div>}
       </div>
     </DndProvider>
   );

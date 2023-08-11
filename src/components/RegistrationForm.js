@@ -53,7 +53,7 @@ const RegistrationForm = (props) => {
             </div>
 			<div>
             <label htmlFor="password"> Password: </label>
-            <input type="text" id="password" name="password" onChange={handleChange} value={teacherFormData.password}></input>
+            <input type="password" id="password" name="password" onChange={handleChange} value={teacherFormData.password}></input>
             </div>
             <div>
             <input type="submit" value="Sign up"></input>

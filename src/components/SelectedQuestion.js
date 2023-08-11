@@ -11,7 +11,8 @@ const SelectedQuestion = (props) => {
             <h3>{props.selectedQuestion ? props.selectedQuestion.prompt : 'None Selected'}</h3>
             {props.selectedQuestion ?
             <section>
-                <FractionTile tileData={props.tileData} addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
+                <FractionTile tileData={props.tileData} selectedQuestion={props.selectedQuestion}
+                addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
             </section> : null}
         </main>
     );

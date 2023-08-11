@@ -43,6 +43,18 @@ function FractionTile(props) {
 
     const selectedQuestionTileList = props.tileData
 
+    const checkForSelectedQuestion = () => {
+        if (props.selectedQuestion) {
+            FractionPictures.filter((pictureData)=> {
+                return selectedQuestionTileList.some((pictureList) => {
+                    return pictureList.value === pictureData.value
+                });
+            });
+        }else{
+            return [];
+        }
+    };
+
     const filteredTilePictures = FractionPictures.filter((pictureData)=> {
         return selectedQuestionTileList.some((pictureList) => {
             return pictureList.value === pictureData.value
@@ -64,9 +76,8 @@ function FractionTile(props) {
 
     return (
         <>
-        <div className="Fractions">{filteredTilePictures.map((picture)=>{
-            return <Fraction title={picture.title} id={picture.id} />;
-        })}
+        <div className="Fractions">{filteredTilePictures ? filteredTilePictures.map((picture)=>{
+            return <Fraction title={picture.title} id={picture.id} />;}) : null }
         </div>
         <div className="Board" ref={drop}>
             {board.map((picture) => {
