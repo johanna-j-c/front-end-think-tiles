@@ -5,12 +5,16 @@ import './Question.css';
 const Question = (props) => {
     
     const handleQuestionClick = () => {
+        console.log(props.questionId)
         props.onSelectQuestion(props.questionId);
     };
 
     return (
         <li>
-            <button id="button" onClick={handleQuestionClick}>{props.title}</button>
+            <h3>{props.title}</h3>
+            <p>{props.prompt}</p>
+            <button id="button" onClick={handleQuestionClick}>Present</button>
+            <button onClick={(e) => props.onUnregister(props.questionId)}>Delete ❌ </button>
         </li>
     );
 };

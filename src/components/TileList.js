@@ -2,16 +2,19 @@ import React from 'react';
 import Tile from './Tile';
 import PropTypes from 'prop-types';
 import './TileList.css';
+import FractionPictures from '../ImageList';
 
 const TileList = (props) => {
     const getTileListJSX = (tiles) => {
             return tiles.map((tile)=>{
                 return (
                     <Tile
-                        tileId = {tile.tileId}
+                        tileId = {tile.id}
                         title = {tile.title}
-                        prompt = {tile.prompt}
+                        value = {tile.value}
                         key={tile.tileId}
+                        addTile={props.addTile}
+                        onUnregisterTile={props.onUnregisterTile}
                     />
                 );
             });
@@ -20,8 +23,8 @@ const TileList = (props) => {
     return (
         <section>
             <h2>Tile List</h2>
-            <h3 className='selectBoard'>Select a Tile:</h3>
-            <ul>{getTileListJSX(props.tileData)}</ul>
+            <h3 className='Tile List'>Update Tile:</h3>
+            <ul>{getTileListJSX(FractionPictures)}</ul>
         </section>
     );
 };

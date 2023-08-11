@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import './Tile.css';
 
 const Tile = (props) => {
-    
-    const handleTileClick = () => {
-        props.onSelectTile(props.tileId);
-    };
 
     return (
         <li>
-            <button id="button" onClick={handleTileClick}>{props.title}</button>
+            <img src={props.title} alt={props.altText} />
+            <button onClick={(e) => props.addTile({id: props.id, value: props.value})}>Add Tile ✅</button>
+            <button onClick={(e) => props.onUnregisterTile({id: props.id, value: props.value})}>Remove Tile ❌</button>  
         </li>
     );
 };
