@@ -25,7 +25,7 @@ const NewQuestionForm = (props) => {
         prompt: questionFormData.prompt,
     }
     props.onHandleQuestionSubmit(newQuestion);
-    setQuestionFormData(questionFormData);
+    setQuestionFormData(questionDefaultState);
     };
 
     const toggleHiddenForm = () => {

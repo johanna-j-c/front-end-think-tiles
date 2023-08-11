@@ -100,6 +100,15 @@ function App() {
     });
   };
 
+  const onHandleNewTile = (data) => {
+    console.log(data);
+    axios.post(`${kBaseUrl}/questions/${questionId}/tiles`, data)
+      .then((response) => {
+        setTileState((prevTiles) => [response.data.tile, ...prevTiles]);
+      })
+      .catch((e) => console.log(e));
+  };
+
   useEffect(()=>{
     fetchQuestions();
   },[]);
@@ -111,7 +120,7 @@ function App() {
       {/* <TileList tileData={tileState} /> */}
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
         onUnregister={onUnregister} />
-      <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} />
+      <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} addTile={onHandleNewTile} />
       {/* <FractionTile /> */}
       <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
       </div>
