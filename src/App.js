@@ -81,7 +81,7 @@ function App() {
   const onHandleQuestionSubmit = (data) => {
     axios.post(`${kBaseUrl}/teachers/${teacherId}/questions`, data)
       .then((response) => {
-        setQuestionState((prevQuestions) => [response.data.question, ...prevQuestions]);
+        setQuestionState((prevQuestions) => [response.data, ...prevQuestions]);
       })
       .catch((e) => console.log(e));
   };
