@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FractionTile from './FractionTile';
-import './SelectedQuestion.css';
+import { Dustbin } from './Dustbin';
+// import './SelectedQuestion.css';
 
 const SelectedQuestion = (props) => {
 

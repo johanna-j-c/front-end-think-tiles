@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import FractionTile from './components/FractionTile';
@@ -220,9 +220,9 @@ function App() {
       <div className="App">
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
         onUnregister={onUnregister} />
+      <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
       <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} 
       addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
-      <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
       </div>}
       </div>
     </DndProvider>

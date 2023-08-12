@@ -8,7 +8,7 @@ const NewQuestionForm = (props) => {
     };
     
     const [questionFormData, setQuestionFormData] = useState(questionDefaultState);
-    const [isHidden, setIsHidden] = useState(false);
+    const [isHidden, setIsHidden] = useState(true);
     
     const handleChange = (event) => {
     const fieldName = event.target.name;
@@ -33,7 +33,7 @@ const NewQuestionForm = (props) => {
     };
 
     const hiddenClass = isHidden ? 'hidden-component' : null;
-    const hiddenFormText = isHidden ? 'Show Board Form' : 'Hide Board Form';
+    const hiddenFormText = isHidden ? 'Create New Question' : 'Hide Question Form';
 
     return (
     <section className="newQuestionForm">

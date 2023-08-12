@@ -1,12 +1,10 @@
-/* Inside src/App.css */
- 
 body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
- 
+
 .title {
     text-align: center;
     width: 30vw;
@@ -16,7 +14,7 @@ body {
     font-size: 2rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
- 
+
 .Login {
     text-align: center;
     display: flex;
@@ -27,7 +25,7 @@ body {
     background-color: rgb(250, 194, 194);
     border-radius: 0 0 10px 10px;
 }
- 
+
 input {
     border: 1px solid rgb(172, 171, 171);
     border-radius: 10px;
