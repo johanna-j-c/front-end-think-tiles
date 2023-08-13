@@ -12,6 +12,8 @@ import { useForm } from "react-hook-form";
 import QuestionList from './components/QuestionList';
 import SelectedQuestion from './components/SelectedQuestion';
 import RegistrationForm from './components/RegistrationForm';
+import Container from '@mui/material/Container';
+
 
 const kBaseUrl = "http://127.0.0.1:8080";
 
@@ -215,25 +217,27 @@ function App() {
 };
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <header className="App-header">Think Tiles</header>
-      <div>
-      {!userId ? 
-      <div>
-        <RegistrationForm onHandleTeacherSubmit={onHandleTeacherSubmit} />
-        <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
-      </div> : 
-      <div className="App">
-      <h2>Hello, {userState.name}</h2>
-      <button onClickCapture={logout}>Log Out</button>
-      <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
-        onUnregister={onUnregister} />
-      <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
-      <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} 
-      addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
-      </div>}
-      </div>
-    </DndProvider>
+    <Container>
+      <DndProvider backend={HTML5Backend}>
+        <header className="App-header">Think Tiles</header>
+        <div>
+        {!userId ? 
+        <div>
+          <RegistrationForm onHandleTeacherSubmit={onHandleTeacherSubmit} />
+          <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
+        </div> : 
+        <div className="App">
+        <h2>Hello, {userState.name}</h2>
+        <button onClickCapture={logout}>Log Out</button>
+        <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
+          onUnregister={onUnregister} />
+        <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
+        <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} 
+        addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
+        </div>}
+        </div>
+      </DndProvider>
+    </Container>
   );
 }
 
