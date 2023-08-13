@@ -5,24 +5,13 @@ import "../App.css";
 import { useDrop } from "react-dnd";
 import NewTileForm from "./NewTileForm";
 import TileList from "./TileList";
+import { Dustbin } from "./Dustbin";
 
 function FractionTile(props) {
 
     const [board, setBoard] = useState([]);
 
     const selectedQuestionTileList = props.tileData
-
-    // const checkForSelectedQuestion = () => {
-    //     if (props.selectedQuestion) {
-    //         FractionPictures.filter((pictureData)=> {
-    //             return selectedQuestionTileList.some((pictureList) => {
-    //                 return pictureList.value === pictureData.value
-    //             });
-    //         });
-    //     }else{
-    //         return [];
-    //     }
-    // };
 
     const filteredTilePictures = FractionPictures.filter((pictureData)=> {
         return selectedQuestionTileList.some((pictureList) => {
@@ -43,6 +32,13 @@ function FractionTile(props) {
         setBoard((board) => [...board, fractionList[0]]);
     };
 
+    // Not working properly, will delete all instances of a tile instead of just one instance
+    // const deleteImageFromBoard = (id) => {
+    //     setBoard((oldData) => {
+    //         return oldData.filter((tile) => tile.id !== id)});
+        
+    // };
+    
     return (
         <>
         <div className="Fractions">{filteredTilePictures ? filteredTilePictures.map((picture)=>{
@@ -54,6 +50,7 @@ function FractionTile(props) {
                 return <Fraction title={picture.title} id={picture.id} />;
             })}
         </div>
+        {/* <Dustbin deleteImage={deleteImageFromBoard} /> */}
         {/* <NewTileForm addTile={props.addTile} /> */}
         <TileList addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
         </>

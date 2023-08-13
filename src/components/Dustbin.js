@@ -1,9 +1,9 @@
 import { useDrop } from 'react-dnd'
-import Fraction from './Fraction.js'
+import { get } from 'react-hook-form'
 
 const style = {
-  height: '12rem',
-  width: '12rem',
+  height: '8rem',
+  width: '8rem',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
   color: 'white',
@@ -13,15 +13,19 @@ const style = {
   lineHeight: 'normal',
   float: 'left',
 }
-export const Dustbin = () => {
-  const [{ canDrop, isOver }, drop] = useDrop(() => ({
+export const Dustbin = (props) => {
+  const [{ canDrop, isOver, getItem }, drop] = useDrop(() => ({
     accept: "image",
-    drop: () => ({ name: 'Dustbin' }),
+    drop: (item) => props.deleteImage(item.id),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
+      getItem: monitor.getItem()
     }),
   }))
+
+  // console.log(getItem);
+
   const isActive = canDrop && isOver
   let backgroundColor = 'red'
   if (isActive) {

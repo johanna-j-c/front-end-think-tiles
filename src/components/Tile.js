@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Tile.css';
+// import './Tile.css';
 
 const Tile = (props) => {
 
