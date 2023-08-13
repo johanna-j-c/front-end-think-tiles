@@ -89,7 +89,7 @@ const RegistrationForm = (props) => {
     };
     
     const [teacherFormData, setTeacherFormData] = useState(teacherDefaultState);
-    const [isHidden, setIsHidden] = useState(false);
+    const [isHidden, setIsHidden] = useState(true);
     
     const handleChange = (event) => {
     const fieldName = event.target.name;
@@ -116,30 +116,30 @@ const RegistrationForm = (props) => {
 
     const hiddenClass = isHidden ? 'hidden-component' : null;
     const hiddenFormText = isHidden ? 'New to Think Tiles? Sign up' : 'Already have an account? Sign in';
-  
+
     return (
-      <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme}>
         <div className={hiddenClass}>
         <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
+        <CssBaseline />
+        <Box
             sx={{
-              marginTop: 8,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             }}
-          >
+        >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
+            <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+            Sign up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
+            <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextField
+                <TextField
                     required
                     fullWidth
                     id="name"
@@ -147,10 +147,10 @@ const RegistrationForm = (props) => {
                     name="name"
                     autoComplete="name"
                     onChange={handleChange} value={teacherFormData.name}
-                  />
+                />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                <TextField
                     required
                     fullWidth
                     id="email"
@@ -158,10 +158,10 @@ const RegistrationForm = (props) => {
                     name="email"
                     autoComplete="email"
                     onChange={handleChange} value={teacherFormData.email}
-                  />
+                />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                <TextField
                     required
                     fullWidth
                     name="password"
@@ -170,31 +170,31 @@ const RegistrationForm = (props) => {
                     id="password"
                     autoComplete="new-password"
                     onChange={handleChange} value={teacherFormData.password}
-                  />
+                />
                 </Grid>
-              </Grid>
-              <Button
+            </Grid>
+            <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-              >
+            >
                 Sign Up
-              </Button>
+            </Button>
             </Box>
-          </Box>
+        </Box>
         </Container>
         </div>
         <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Button variant="text" onClick={toggleHiddenForm}>
+                <Button variant="text" onClick={toggleHiddenForm}>
                     {hiddenFormText}
-                  </Button>
+                </Button>
                 </Grid>
-              </Grid>
-      </ThemeProvider>
+            </Grid>
+    </ThemeProvider>
     );
-  }
+}
 
 // Need to update these propTypes
 // BoardList.propTypes = {
