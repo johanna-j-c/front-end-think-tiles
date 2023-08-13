@@ -165,6 +165,7 @@ function App() {
     axios.post(`${kBaseUrl}/questions/${questionId}/tiles`, data)
       .then((response) => {
         setTileState((prevTiles) => [response.data, ...prevTiles]);
+        fetchTiles(questionId);
       })
       .catch((e) => console.log(e));
   };
@@ -208,6 +209,11 @@ function App() {
     fetchQuestions(teacher.id);
   };
 
+  const logout = () => {
+    localStorage.removeItem('teacher');
+    setUserState(null);
+};
+
   return (
     <DndProvider backend={HTML5Backend}>
       <header className="App-header">Think Tiles</header>
@@ -218,6 +224,8 @@ function App() {
         <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
       </div> : 
       <div className="App">
+      <h2>Hello, {userState.name}</h2>
+      <button onClickCapture={logout}>Log Out</button>
       <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
         onUnregister={onUnregister} />
       <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
