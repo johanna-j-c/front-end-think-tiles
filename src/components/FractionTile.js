@@ -7,6 +7,7 @@ import NewTileForm from "./NewTileForm";
 import TileList from "./TileList";
 import { Dustbin } from "./Dustbin";
 import TemporaryDrawer from "./Drawer";
+import Button from '@mui/material/Button';
 
 function FractionTile(props) {
 
@@ -45,7 +46,7 @@ function FractionTile(props) {
         <div className="Fractions">{filteredTilePictures ? filteredTilePictures.map((picture)=>{
             return <Fraction title={picture.title} id={picture.id} />;}) : null }
         </div>
-        <button onClick={(e) => setBoard([])}>Clear Board</button>
+        <Button onClick={(e) => setBoard([])}>Clear Board</Button>
         <div className="Board" ref={drop}>
             {board.map((picture) => {
                 return <Fraction title={picture.title} id={picture.id} />;

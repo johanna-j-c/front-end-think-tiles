@@ -15,7 +15,9 @@ import SelectedQuestion from './components/SelectedQuestion';
 import RegistrationForm from './components/RegistrationForm';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 const kBaseUrl = "http://127.0.0.1:8080";
 
@@ -221,25 +223,35 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <AppBar />
-      <Container>
+
         <div>
         {!userId ? 
+        <Container>
         <div>
           <RegistrationForm onHandleTeacherSubmit={onHandleTeacherSubmit} />
           <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
-        </div> : 
-        <div className="App">
-        <Typography variant='h5'>Hello, {userState.name}</Typography>
-        {/* <h2>Hello, {userState.name}</h2> */}
-        <button onClickCapture={logout}>Log Out</button>
-        <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
-          onUnregister={onUnregister} />
-        <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
-        <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} 
-        addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
-        </div>}
         </div>
-      </Container>
+        </Container>
+        :
+        <Grid container spacing={0}>
+          <Grid xs={3} marginLeft={3} marginTop={3}>
+            <Box marginBottom={3}>
+              <Typography variant='h5'>Hello, {userState.name}</Typography>
+              <Button onClickCapture={logout} variant='outlined'>Log Out</Button>
+            </Box>
+            <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
+              onUnregister={onUnregister} />
+            <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
+          </Grid>
+          <Grid xs={8} marginTop={3}>
+            <div className="App">
+            <SelectedQuestion selectedQuestion={selectedQuestion} tileData={tileState} 
+            addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
+            </div>
+          </Grid>
+        </Grid>
+        }
+        </div>
     </DndProvider>
   );
 }
