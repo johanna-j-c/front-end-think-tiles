@@ -1,6 +1,7 @@
 // import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import AppBar from './components/AppBar';
 import FractionTile from './components/FractionTile';
 import NewQuestionForm from './components/NewQuestionForm';
 import TileList from './components/TileList'; 
@@ -219,7 +220,8 @@ function App() {
   return (
     <Container>
       <DndProvider backend={HTML5Backend}>
-        <header className="App-header">Think Tiles</header>
+        {/* <header className="App-header">Think Tiles</header> */}
+        <AppBar />
         <div>
         {!userId ? 
         <div>

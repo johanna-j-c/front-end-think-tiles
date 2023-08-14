@@ -185,7 +185,10 @@ const RegistrationForm = (props) => {
         </Container>
         </div>
         <Grid container justifyContent="flex-end">
-                <Grid item>
+                <Grid item 
+                sx={{
+            marginY: 2,
+            }}>
                 <Button variant="text" onClick={toggleHiddenForm}>
                     {hiddenFormText}
                 </Button>
