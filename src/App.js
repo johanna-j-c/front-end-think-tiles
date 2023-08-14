@@ -14,6 +14,7 @@ import QuestionList from './components/QuestionList';
 import SelectedQuestion from './components/SelectedQuestion';
 import RegistrationForm from './components/RegistrationForm';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 
 const kBaseUrl = "http://127.0.0.1:8080";
@@ -218,10 +219,9 @@ function App() {
 };
 
   return (
-    <Container>
-      <DndProvider backend={HTML5Backend}>
-        {/* <header className="App-header">Think Tiles</header> */}
-        <AppBar />
+    <DndProvider backend={HTML5Backend}>
+      <AppBar />
+      <Container>
         <div>
         {!userId ? 
         <div>
@@ -229,6 +229,7 @@ function App() {
           <Login fetchLoginTeachers={fetchLoginTeachers} handleLoginUser={handleLoginUser} />
         </div> : 
         <div className="App">
+        <Typography variant='h5'>Hello, {userState.name}</Typography>
         <h2>Hello, {userState.name}</h2>
         <button onClickCapture={logout}>Log Out</button>
         <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
@@ -238,8 +239,8 @@ function App() {
         addTile={onHandleNewTile} onUnregisterTile={onUnregisterTile} />
         </div>}
         </div>
-      </DndProvider>
-    </Container>
+      </Container>
+    </DndProvider>
   );
 }
 

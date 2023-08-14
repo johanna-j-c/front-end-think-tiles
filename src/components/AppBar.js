@@ -37,11 +37,11 @@ function ResponsiveAppBar() {
     };
 
     return (
-    <AppBar position="static" style={{backgroundColor:"rgb(171, 207, 196)"}}>
+    <AppBar position="static" style={{backgroundColor:"rgb(162, 207, 196)"}}>
         <Container maxWidth="xl">
         <Toolbar disableGutters>
             <img src={LogoThinkTiles}
-            alt='Think Tiles Logo' width={150} height={150}/>
+            alt='Think Tiles Logo' width={120} height={120}/>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
                 size="large"
@@ -78,25 +78,6 @@ function ResponsiveAppBar() {
                 ))}
             </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-            }}
-            >
-            LOGO
-            </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
                 <Button
