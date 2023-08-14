@@ -4,6 +4,10 @@ import Tile from './Tile';
 import PropTypes from 'prop-types';
 import './TileList.css';
 import FractionPictures from '../ImageList';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+
 
 const TileList = (props) => {
     const getTileListJSX = (tiles) => {
@@ -34,11 +38,14 @@ const TileList = (props) => {
     return (
         <section>
             {/* <div className={hiddenClass}> */}
-            <div>
-                <h2>Tile List</h2>
-                <h3 className='Tile List'>Update Tile:</h3>
-                <ul>{getTileListJSX(FractionPictures)}</ul>
-            </div>
+            <Box marginLeft={5} marginTop={2}>
+                <Typography marginLeft={1} variant='h3'>Tile List</Typography>
+                <Typography marginLeft={5} variant='h6'>Update Tile:</Typography>
+                <Stack
+                    spacing={2}
+                    >{getTileListJSX(FractionPictures)}
+                </Stack>
+            </Box>
             {/* <button onClick={toggleHiddenForm}>{hiddenFormText}</button> */}
         </section>
     );

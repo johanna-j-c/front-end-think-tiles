@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import FractionTile from './FractionTile';
 import { Dustbin } from './Dustbin';
 // import './SelectedQuestion.css';
+import Typography from '@mui/material/Typography';
 
 const SelectedQuestion = (props) => {
 
     return (
         <main className="selectedQuestion">
-            <h2>Current Selected Question</h2>
-            <h3>{props.selectedQuestion ? props.selectedQuestion.prompt : 'None Selected'}</h3>
+            <Typography variant='overline'>Selected Question</Typography>
+            <Typography variant='h5'>{props.selectedQuestion ? props.selectedQuestion.prompt : 'None Selected'}</Typography>
             {props.selectedQuestion ?
             <section>
                 <FractionTile tileData={props.tileData} selectedQuestion={props.selectedQuestion}

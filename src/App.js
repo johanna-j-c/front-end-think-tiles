@@ -241,7 +241,9 @@ function App() {
             </Box>
             <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
               onUnregister={onUnregister} />
-            <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
+            <Box marginY={3}>
+              <NewQuestionForm onHandleQuestionSubmit={onHandleQuestionSubmit} />
+            </Box>
           </Grid>
           <Grid xs={8} marginTop={3}>
             <div className="App">

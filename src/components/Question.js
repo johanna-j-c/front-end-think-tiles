@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './Question.css';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const Question = (props) => {
     
@@ -13,8 +14,10 @@ const Question = (props) => {
 
     return (
         <Box>
-            <h3>{props.title}</h3>
-            <p>{props.prompt}</p>
+            <Typography marginBottom={0.5} variant='body1'>{props.title}</Typography>
+            <Typography marginBottom={0.5} variant='body2'>{props.prompt}</Typography>
+            {/* <h3>{props.title}</h3> */}
+            {/* <p>{props.prompt}</p> */}
             {/* <button id="button" onClick={handleQuestionClick}>Present</button> */}
             <Button
                     onClick={handleQuestionClick}

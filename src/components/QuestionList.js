@@ -27,7 +27,7 @@ const QuestionList = (props) => {
             {/* <Box marginBottom={3}>
                 <h2>Question List</h2>
             </Box> */}
-            <Typography marginY={3} variant='h6'>Select a Question:</Typography>
+            <Typography marginY={1} variant='h6'>Select a Question:</Typography>
             {/* <h3 className='selectQuestion'>Select a Question:</h3> */}
             <Stack spacing={4}>
                 {getQuestionListJSX(props.questionData)}
