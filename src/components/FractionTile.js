@@ -8,6 +8,7 @@ import TileList from "./TileList";
 import { Dustbin } from "./Dustbin";
 import TemporaryDrawer from "./Drawer";
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 function FractionTile(props) {
 
@@ -46,15 +47,21 @@ function FractionTile(props) {
         <div className="Fractions">{filteredTilePictures ? filteredTilePictures.map((picture)=>{
             return <Fraction title={picture.title} id={picture.id} />;}) : null }
         </div>
-        <Button onClick={(e) => setBoard([])}>Clear Board</Button>
         <div className="Board" ref={drop}>
             {board.map((picture) => {
                 return <Fraction title={picture.title} id={picture.id} />;
             })}
         </div>
+        <Grid container>
+            <Grid xs={7}>
+                <Button onClick={(e) => setBoard([])}>Clear Board</Button>
+            </Grid>
+            <Grid xs={5}>
+                <TemporaryDrawer addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
+            </Grid>
+        </Grid>
         {/* <Dustbin deleteImage={deleteImageFromBoard} /> */}
         {/* <NewTileForm addTile={props.addTile} /> */}
-        <TemporaryDrawer addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
         {/* <TileList addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} /> */}
         </>
     )

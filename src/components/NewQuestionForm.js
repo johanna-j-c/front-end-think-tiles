@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './NewQuestionForm.css';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 
 const NewQuestionForm = (props) => {
     const questionDefaultState = {
@@ -36,24 +39,37 @@ const NewQuestionForm = (props) => {
     const hiddenFormText = isHidden ? 'Create New Question' : 'Hide Question Form';
 
     return (
-    <section className="newQuestionForm">
-        <form onSubmit={handleSubmit} className={hiddenClass}>
-            <h2>New Question</h2>
-            <div>
-            <label htmlFor="title">Title: </label>
-            <input type="text" id="title" name="title" onChange={handleChange} value={questionFormData.title}></input>
-            </div>
-            <div>
-            <label htmlFor="prompt"> Prompt: </label>
-            <input type="text" id="prompt" name="prompt" onChange={handleChange} value={questionFormData.prompt}></input>
-            </div>
-            <div>
-            <input type="submit" value="Add a Question"></input>
-            </div>
-        </form>
-        <button onClick={toggleHiddenForm}>{hiddenFormText}</button>
-    </section>
-    );
+        <section className="newQuestionForm">
+            <form onSubmit={handleSubmit} className={hiddenClass}>
+                <Typography variant='h6'>New Question</Typography>
+                <TextField
+                    required
+                    style={{ width: "200px", margin: "5px" }}
+                    id="title"
+                    label="Title"
+                    name="title"
+                    onChange={handleChange} value={questionFormData.title}
+                />
+                <TextField
+                    required
+                    style={{ width: "200px", margin: "5px" }}
+                    id="prompt"
+                    label="Prompt"
+                    name="prompt"
+                    onChange={handleChange} value={questionFormData.prompt}
+                />
+                <Button
+                type="submit"
+                style={{ width: "200px", margin: "5px" }}
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                >
+                Add a Question
+                </Button>
+            </form>
+            <Button onClick={toggleHiddenForm} variant='text'>{hiddenFormText}</Button>
+        </section>
+        );
 };
     
     export default NewQuestionForm;
