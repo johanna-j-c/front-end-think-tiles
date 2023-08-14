@@ -230,7 +230,7 @@ function App() {
         </div> : 
         <div className="App">
         <Typography variant='h5'>Hello, {userState.name}</Typography>
-        <h2>Hello, {userState.name}</h2>
+        {/* <h2>Hello, {userState.name}</h2> */}
         <button onClickCapture={logout}>Log Out</button>
         <QuestionList questionData={questionState} onSelectQuestion={handleQuestionSelection}
           onUnregister={onUnregister} />

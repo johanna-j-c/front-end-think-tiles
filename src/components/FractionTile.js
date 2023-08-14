@@ -6,6 +6,7 @@ import { useDrop } from "react-dnd";
 import NewTileForm from "./NewTileForm";
 import TileList from "./TileList";
 import { Dustbin } from "./Dustbin";
+import TemporaryDrawer from "./Drawer";
 
 function FractionTile(props) {
 
@@ -52,7 +53,8 @@ function FractionTile(props) {
         </div>
         {/* <Dustbin deleteImage={deleteImageFromBoard} /> */}
         {/* <NewTileForm addTile={props.addTile} /> */}
-        <TileList addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
+        <TemporaryDrawer addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} />
+        {/* <TileList addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} /> */}
         </>
     )
 }; 

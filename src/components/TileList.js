@@ -21,24 +21,25 @@ const TileList = (props) => {
             });
     }; 
 
-    const [isHidden, setIsHidden] = useState(true);
+    // const [isHidden, setIsHidden] = useState(true);
 
-    const toggleHiddenForm = () => {
-        setIsHidden(!isHidden);
-    };
+    // const toggleHiddenForm = () => {
+    //     setIsHidden(!isHidden);
+    // };
 
-    const hiddenClass = isHidden ? 'hidden-component' : null;
-    const hiddenFormText = isHidden ? 'Show Tile List' : 'Hide Tile List';
+    // const hiddenClass = isHidden ? 'hidden-component' : null;
+    // const hiddenFormText = isHidden ? 'Show Tile List' : 'Hide Tile List';
 
 
     return (
         <section>
-            <div className={hiddenClass}>
+            {/* <div className={hiddenClass}> */}
+            <div>
                 <h2>Tile List</h2>
                 <h3 className='Tile List'>Update Tile:</h3>
                 <ul>{getTileListJSX(FractionPictures)}</ul>
             </div>
-            <button onClick={toggleHiddenForm}>{hiddenFormText}</button>
+            {/* <button onClick={toggleHiddenForm}>{hiddenFormText}</button> */}
         </section>
     );
 };
