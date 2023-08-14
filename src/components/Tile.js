@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import './Tile.css';
+import Button from '@mui/material/Button';
 
 const Tile = (props) => {
 
     return (
         <li>
             <img src={props.title} alt={props.altText} />
-            <button onClick={(e) => props.addTile({id: props.id, value: props.value})}>Add Tile ✅</button>
-            <button onClick={(e) => props.onUnregisterTile({id: props.id, value: props.value})}>Remove Tile ❌</button>  
+            <Button onClick={(e) => props.addTile({id: props.id, value: props.value})}>Add Tile ✅</Button>
+            <Button onClick={(e) => props.onUnregisterTile({id: props.id, value: props.value})}>Remove Tile ❌</Button>  
         </li>
     );
 };
