@@ -3,7 +3,6 @@ import Question from './Question';
 import PropTypes from 'prop-types';
 import './QuestionList';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 const QuestionList = (props) => {
@@ -14,7 +13,7 @@ const QuestionList = (props) => {
                             questionId = {question.id}
                             title = {question.title}
                             prompt = {question.prompt}
-                            key={question.question}
+                            key={question.id}
                             onSelectQuestion={props.onSelectQuestion}
                             onUnregister={props.onUnregister}
                         />
@@ -24,27 +23,23 @@ const QuestionList = (props) => {
 
     return (
         <section>
-            {/* <Box marginBottom={3}>
-                <h2>Question List</h2>
-            </Box> */}
             <Typography marginY={1} variant='h6'>Select a Question:</Typography>
             {/* <h3 className='selectQuestion'>Select a Question:</h3> */}
             <Stack spacing={4}>
                 {getQuestionListJSX(props.questionData)}
             </Stack>
-            {/* <ul>{getQuestionListJSX(props.questionData)}</ul> */}
         </section>
     );
 };
 
-// BoardList.propTypes = {
-//     boardData: PropTypes.arrayOf(
-//         PropTypes.shape({
-//             boardId: PropTypes.number.isRequired,
-//             title: PropTypes.string.isRequired,
-//             owner: PropTypes.string.isRequired,
-//         })
-//     ).isRequired,
-// }
+QuestionList.propTypes = {
+    questionData: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            title: PropTypes.string.isRequired,
+            prompt: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+}
 
 export default QuestionList;

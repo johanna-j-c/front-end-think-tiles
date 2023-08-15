@@ -6,9 +6,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';import Typography from '@mui/material/Typography';
@@ -16,69 +13,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const defaultTheme = createTheme();
-
-// const RegistrationForm = (props) => {
-//     const teacherDefaultState = {
-//         name: "",
-//         email: "",
-// 		password: ""
-//     };
-    
-//     const [teacherFormData, setTeacherFormData] = useState(teacherDefaultState);
-//     const [isHidden, setIsHidden] = useState(false);
-    
-//     const handleChange = (event) => {
-//     const fieldName = event.target.name;
-// 	const fieldValue = event.target.value;
-    
-//     const newFormData = {...teacherFormData, [fieldName]: fieldValue};
-//     setTeacherFormData(newFormData);
-//     };
-
-//     const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const newTeacher = {
-//         name: teacherFormData.name, 
-//         email: teacherFormData.email,
-// 		password: teacherFormData.password
-//     }
-//     props.onHandleTeacherSubmit(newTeacher);
-//     setTeacherFormData(teacherDefaultState);
-//     };
-
-//     const toggleHiddenForm = () => {
-//         setIsHidden(!isHidden);
-//     };
-
-//     const hiddenClass = isHidden ? 'hidden-component' : null;
-//     const hiddenFormText = isHidden ? 'Show Teacher Registration Form' : 'Hide Teacher Registration Form';
-
-//     return (
-//     <section>
-//         <div className={hiddenClass}>
-//             <p className='title'>New Teacher Registration</p>
-//             <form className='Registration' onSubmit={handleSubmit} >
-//                 <div>
-//                 <label htmlFor="name">Name: </label>
-//                 <input type="text" id="name" name="name" onChange={handleChange} value={teacherFormData.name}></input>
-//                 </div>
-//                 <div>
-//                 <label htmlFor="email"> Email: </label>
-//                 <input type="text" id="email" name="email" onChange={handleChange} value={teacherFormData.email}></input>
-//                 </div>
-//                 <div>
-//                 <label htmlFor="password"> Password: </label>
-//                 <input type="password" id="password" name="password" onChange={handleChange} value={teacherFormData.password}></input>
-//                 </div>
-//                 <div>
-//                 <input type="submit" value="Sign up" style={{ backgroundColor: "#a1eafb" }}></input>
-//                 </div>
-//             </form>
-//         </div>
-//         <button onClick={toggleHiddenForm}>{hiddenFormText}</button>
-//     </section>
-//     );
-// };
 
 const RegistrationForm = (props) => {
     const teacherDefaultState = {
@@ -198,15 +132,8 @@ const RegistrationForm = (props) => {
     );
 }
 
-// Need to update these propTypes
-// BoardList.propTypes = {
-//     boardData: PropTypes.arrayOf(
-//         PropTypes.shape({
-//             boardId: PropTypes.number.isRequired,
-//             title: PropTypes.string.isRequired,
-//             owner: PropTypes.string.isRequired,
-//         })
-//     ).isRequired,
-// }
+RegistrationForm.propTypes = {
+    onHandleTeacherSubmit: PropTypes.func.isRequired,
+}
 
 export default RegistrationForm;

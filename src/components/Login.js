@@ -5,20 +5,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LoginBackground from "../img/LoginBackground.jpg"
+// import LoginBackground from "../img/LoginBackground.jpg"
 
 const defaultTheme = createTheme();
 
-function Login(props) {
+const Login = (props) => {
 	const {
 		register,
 		handleSubmit,
@@ -45,21 +42,6 @@ function Login(props) {
 		props.handleLoginUser(teacherData)
 	};
 
-	// return (
-	// 	<>
-	// 		<p className="title">Login Form</p>
-
-	// 		<form className="Login" onSubmit={handleSubmit(onSubmit)}>
-    //             <label>Email:</label>
-	// 			<input type="email" {...register("email", { required: true })} />
-	// 			{errors.email && <span style={{ color: "red" }}>
-	// 				*Email* is mandatory </span>}
-    //             <label>Password:</label>
-	// 			<input type="password" {...register("password")} />
-	// 			<input type={"submit"} style={{ backgroundColor: "#a1eafb" }} />
-	// 		</form>
-	// 	</>
-	// );
 	return (
 		<ThemeProvider theme={defaultTheme}>
 		<Grid container component="main" sx={{ height: '100vh' }}>
@@ -125,13 +107,6 @@ function Login(props) {
 					>
 					Sign In
 					</Button>
-				{/* <Grid container>
-					<Grid item xs>
-						<Link href="#" variant="body2">
-						Forgot password?
-						</Link>
-					</Grid>
-				</Grid> */}
 				</Box>
 			</Box>
 			</Grid>

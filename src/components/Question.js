@@ -16,14 +16,10 @@ const Question = (props) => {
         <Box>
             <Typography marginBottom={0.5} variant='body1'>{props.title}</Typography>
             <Typography marginBottom={0.5} variant='body2'>{props.prompt}</Typography>
-            {/* <h3>{props.title}</h3> */}
-            {/* <p>{props.prompt}</p> */}
-            {/* <button id="button" onClick={handleQuestionClick}>Present</button> */}
             <Button
                     onClick={handleQuestionClick}
                     variant='contained'
                     >Present</Button>
-            {/* <button onClick={(e) => props.onUnregister(props.questionId)}>Delete ❌ </button> */}
             <Button onClick={(e) => props.onUnregister(props.questionId)}
                     variant='text'
                     >Delete ❌ </Button>
@@ -31,10 +27,12 @@ const Question = (props) => {
     );
 };
 
-// Board.propTypes = {
-//     boardId: PropTypes.number.isRequired,
-//     title: PropTypes.string.isRequired,
-//     owner: PropTypes.string.isRequired,
-// };
+Question.propTypes = {
+    questionId: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    prompt: PropTypes.string.isRequired,
+    onSelectQuestion: PropTypes.func.isRequired,
+    onUnregister: PropTypes.func.isRequired
+};
 
 export default Question;

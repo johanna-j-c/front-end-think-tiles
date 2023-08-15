@@ -21,10 +21,10 @@ const Tile = (props) => {
     );
 };
 
-// Board.propTypes = {
-//     boardId: PropTypes.number.isRequired,
-//     title: PropTypes.string.isRequired,
-//     owner: PropTypes.string.isRequired,
-// };
+Tile.propTypes = {
+    id: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
+    displayOrder: PropTypes.string,
+};
 
 export default Tile;

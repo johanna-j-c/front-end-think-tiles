@@ -3,9 +3,7 @@ import Fraction from "./Fraction";
 import FractionPictures from "../ImageList"
 import "../App.css";
 import { useDrop } from "react-dnd";
-import NewTileForm from "./NewTileForm";
-import TileList from "./TileList";
-import { Dustbin } from "./Dustbin";
+// import { Dustbin } from "./Dustbin";
 import TemporaryDrawer from "./Drawer";
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
@@ -61,8 +59,6 @@ function FractionTile(props) {
             </Grid>
         </Grid>
         {/* <Dustbin deleteImage={deleteImageFromBoard} /> */}
-        {/* <NewTileForm addTile={props.addTile} /> */}
-        {/* <TileList addTile={props.addTile} onUnregisterTile={props.onUnregisterTile} /> */}
         </>
     )
 }; 

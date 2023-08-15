@@ -2,14 +2,10 @@
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import AppBar from './components/AppBar';
-import FractionTile from './components/FractionTile';
 import NewQuestionForm from './components/NewQuestionForm';
-import TileList from './components/TileList'; 
-import Question from './components/Question';
 import Login from './components/Login';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useForm } from "react-hook-form";
 import QuestionList from './components/QuestionList';
 import SelectedQuestion from './components/SelectedQuestion';
 import RegistrationForm from './components/RegistrationForm';
@@ -83,7 +79,7 @@ const checkLocalStorage = () => {
 };
 
 
-function App() {
+const App = () => {
 
   const [teacherState, setTeacherState] = useState([]);
   const [userState, setUserState] = useState(checkLocalStorage);
@@ -223,7 +219,6 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <AppBar />
-
         <div>
         {!userId ? 
         <Container>

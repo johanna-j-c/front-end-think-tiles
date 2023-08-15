@@ -20,12 +20,12 @@ const SelectedQuestion = (props) => {
     );
 };
 
-// SelectedQuestion.propTypes = {
-//     boardState: PropTypes.shape({
-//             boardId: PropTypes.number.isRequired,
-//             title: PropTypes.string.isRequired,
-//             owner: PropTypes.string.isRequired,
-//         })
-// };
+SelectedQuestion.propTypes = {
+    questionState: PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            title: PropTypes.string.isRequired,
+            prompt: PropTypes.string.isRequired,
+        })
+};
 
 export default SelectedQuestion;
