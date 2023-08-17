@@ -6,6 +6,9 @@ Think Tiles is a intuitive web application designed to expand math education in 
 
 My web application enables teachers to save and organize their unique "think tiles" directly to their profiles. This feature facilitates easy access and promotes the reuse of meticulously designed workspaces, streamlining the lesson planning process and enhancing overall teaching efficiency.
 
+## Demo Video
+https://github.com/johanna-j-c/front-end-think-tiles/assets/101949856/1cbcf60f-ab5e-43a7-b8ab-be4dfad3b0f0
+
 ## Key Features
 * Create Think Tiles: Craft engaging "think tiles" with interactive math manipulative workspaces.
 * Save and Organize: Store your curated collection of "think tiles" for quick and easy lesson planning.
@@ -23,10 +26,9 @@ My web application enables teachers to save and organize their unique "think til
 
 ## How to Get Started
 Follow these simple steps to dive into the world of Think Tiles:
-
-Step 1: Clone this repository to your local machine.
-Step 2: Set up the backend API using Spring Boot. [Think Tiles Back-end Repo](https://github.com/johanna-j-c/back-end-think-tiles)
-Step 3: Implement the frontend using React and the React DnD library. See below for Create React App Setup.
+1. Clone this repository to your local machine.
+2. Set up the backend API using Spring Boot: [Think Tiles Back-end Repo](https://github.com/johanna-j-c/back-end-think-tiles)
+3. Implement the frontend using React and the React DnD library. See below for Create React App Setup.
 
 # Getting Started with Create React App
 
