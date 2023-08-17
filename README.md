@@ -1,3 +1,33 @@
+# Welcome to Think Tiles
+![Think Tiles Logo](./src/img/LogoThinkTiles.png)
+
+## About the Application
+Think Tiles is a intuitive web application designed to expand math education in digital spaces. My platform brings together the power of visual learning and interactive problem-solving, enabling educators to create engaging "think tiles" that foster a deeper understanding of mathematical concepts.
+
+My web application enables teachers to save and organize their unique "think tiles" directly to their profiles. This feature facilitates easy access and promotes the reuse of meticulously designed workspaces, streamlining the lesson planning process and enhancing overall teaching efficiency.
+
+## Key Features
+* Create Think Tiles: Craft engaging "think tiles" with interactive math manipulative workspaces.
+* Save and Organize: Store your curated collection of "think tiles" for quick and easy lesson planning.
+* Interactive Learning: Foster student engagement and comprehension through visual and hands-on problem-solving.
+* Effortless Reusability: Make the most of your meticulously designed materials for continuous teaching excellence.
+
+## Key Dependencies
+- **@emotion/react**: CSS-in-JS library for styling components.
+- **@mui/material**: Material-UI's React component library.
+- **axios**: Promise-based HTTP client for API requests.
+- **react**: Core library for building user interfaces.
+- **react-dnd**: Drag-and-drop library for interactive interfaces.
+- **react-hook-form**: Form state management and validation.
+- **react-scripts**: Configuration and scripts for React apps.
+
+## How to Get Started
+Follow these simple steps to dive into the world of Think Tiles:
+
+Step 1: Clone this repository to your local machine.
+Step 2: Set up the backend API using Spring Boot. [Think Tiles Back-end Repo](https://github.com/johanna-j-c/back-end-think-tiles)
+Step 3: Implement the frontend using React and the React DnD library. See below for Create React App Setup.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
